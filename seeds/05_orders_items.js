@@ -5,14 +5,14 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('orders_items').insert([
         { id: 1,
-          orders_id: 1,
-          items_id: 4},
+          order_id: 1,
+          item_id: 4},
         { id: 2,
-          orders_id: 2,
-          items_id: 1},
+          order_id: 2,
+          item_id: 1},
         { id: 3,
-          orders_id: 3,
-          items_id: 6}
+          order_id: 3,
+          item_id: 6}
       ]);
     });
 };

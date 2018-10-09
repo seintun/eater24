@@ -4,11 +4,13 @@
         table.integer('user_id')
           .notNullable()
           .references('id')
-          .inTable('users');
+          .inTable('users')
+          .onDelete('CASCADE');
         table.integer('restaurant_id')
           .notNullable()
           .references('id')
-          .inTable('restaurants');
+          .inTable('restaurants')
+          .onDelete('CASCADE');
         table.integer('pretax');
         table.integer('tax');
         table.integer('tips');

@@ -21,7 +21,7 @@ exports.seed = function(knex, Promise) {
           restaurant_id: 2,
           pretax: '51', 
           tax: '23',
-          tips: '18'},
+          tips: '18'}
       ]);
     });
 };

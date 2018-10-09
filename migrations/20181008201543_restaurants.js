@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
       table.string('address').notNullable().defaultTo('');
       table.string('cuisine');
       table.string('phone');
+      table.timestamps(true,true);
     });
   };
   

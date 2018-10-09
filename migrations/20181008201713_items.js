@@ -10,6 +10,7 @@ exports.up = function(knex, Promise) {
       table.integer('price').notNullable().defaultTo(0);
       table.string('descriptions');
       table.string('allergens');
+      table.timestamps(true,true);
     });
   };
   

@@ -1,11 +1,11 @@
 exports.up = function(knex, Promise) {
     return knex.schema.createTable('orders_items', (table) =>{
         table.increments();
-        table.integer('orders_id')
+        table.integer('order_id')
           .notNullable()
           .references('id')
           .inTable('orders');
-        table.integer('items_id')
+        table.integer('item_id')
           .notNullable()
           .references('id')
           .inTable('items');

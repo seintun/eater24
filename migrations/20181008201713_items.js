@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
           .notNullable()
           .references('id')
           .inTable('restaurants')
+          .onDelete('CASCADE')
       table.string('name').notNullable().defaultTo('');
       table.integer('price').notNullable().defaultTo(0);
       table.string('descriptions');

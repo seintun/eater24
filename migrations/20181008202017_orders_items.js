@@ -4,11 +4,13 @@ exports.up = function(knex, Promise) {
         table.integer('order_id')
           .notNullable()
           .references('id')
-          .inTable('orders');
+          .inTable('orders')
+          .onDelete('CASCADE');
         table.integer('item_id')
           .notNullable()
           .references('id')
-          .inTable('items');
+          .inTable('items')
+          .onDelete('CASCADE');
     });
 };
 

@@ -1,5 +1,5 @@
-const getRestaurants = (req, res, next) => {
+const fetchRestaurants = (req, res, next) => {
     res.send(`You are hitting the collection of Restaurants page!`)
 }
 
-module.exports = {getRestaurants};
+module.exports = {fetchRestaurants};

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const ctrl = require('../controllers/users.controller')
+const ctrl = require('../controllers/items.controller')
 
-router.get('/', ctrl.getUsers);
+router.get('/', ctrl.fetchItems);
 
 module.exports = router;

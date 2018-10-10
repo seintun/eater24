@@ -26,7 +26,7 @@ app.use((err, req, res, next) => {
 
 if (process.env.NODE_ENV !== 'test') {
     app.listen(port, () => {
-      console.log(`Your server.js port is ${port}!`)
+      console.log(`Your server.js port is running ${port}!`)
     })
 }
 

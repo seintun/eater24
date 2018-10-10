@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
 const port = 3333;
-const usersRoute = require('./routes/users');
-const restaurantsRoute = require('./routes/restaurants');
-const itemsRoute = require('./routes/items');
-const ordersRoute = require('./routes/orders');
+const usersRoute = require('./routes/users.route');
+const restaurantsRoute = require('./routes/restaurants.route');
+const itemsRoute = require('./routes/items.route');
+const ordersRoute = require('./routes/orders.route');
 
 app.use('/users', usersRoute);
 app.use('/restaurants', restaurantsRoute);

@@ -9,7 +9,7 @@ if (process.env.NODE_ENV !== 'test') app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(cors())
 
-const usersRoute = require('./routes/users.route.js');
+const usersRoute = require('./src/routes/users.route.js');
 // const restaurantsRoute = require('./routes/restaurants.route');
 // const itemsRoute = require('./routes/items.route');
 // const ordersRoute = require('./routes/orders.route');

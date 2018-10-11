@@ -12,24 +12,24 @@ const findRestaurant = (id) => {
         .select(['restaurants.name','restaurants.address','restaurants.cuisine','restaurants.phone'])
         .where('id',id);
 }
-// //Insert new restaurant information
-// const createrestaurant = (restaurantInfo) => {
-//     return knex('restaurants')
-//         .insert({
-//             restaurant: restaurantInfo.restaurant,
-//             restaurantId:     restaurantInfo.restaurantId,
-//             password:   restaurantInfo.password,
-//             email:      restaurantInfo.email
-//         })
-//         .then(result => {
-//             return `Welcome! Your restaurant '${restaurantInfo.name}' has been created`
-//         })
-//         .catch(err => {
-//             return err.message;
-//         })
-// }
+//Insert new restaurant information
+const createRestaurant = (restaurantInfo) => {
+    return knex('restaurants')
+        .insert({
+            name:       restaurantInfo.name,
+            address:    restaurantInfo.address,
+            cuisine:   restaurantInfo.cuisine,
+            phone:      restaurantInfo.phone
+        })
+        .then(result => {
+            return `Welcome! Your restaurant '${restaurantInfo.name}' has been created`
+        })
+        .catch(err => {
+            return err.message;
+        })
+}
 module.exports = {
     fetchRestaurants,
-    findRestaurant
-    // createRestaurant
+    findRestaurant,
+    createRestaurant
 }

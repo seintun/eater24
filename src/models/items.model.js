@@ -18,17 +18,17 @@ const findItem = (id) => {
       : result
   })
 }
-// const createitem = (itemInfo) => {
-//   let item = itemsQuery.createitem(itemInfo)
+const createItem = (itemInfo) => {
+  let item = itemsQuery.createItem(itemInfo)
 
-//   return item.then(result => {
-//     return !result
-//       ? { error: 'error creating new item', status: 404 }
-//       : result
-//   })
-// }
+  return item.then(result => {
+    return !result
+      ? { error: 'error creating new item', status: 404 }
+      : result
+  })
+}
 module.exports = {
   fetchItems,
-  findItem
-//   createitem
+  findItem,
+  createItem
 }

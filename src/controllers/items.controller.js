@@ -21,7 +21,19 @@ const findItem = (req, res, next) => {
       next(error)
     })
 }
+const createItem = (req, res, next) => {
+    let {body} = req;
+    let promise = model.createItem(body)
+  
+    promise.then(result => {
+      return result.error ? next(result) : res.status(200).json(result)
+    })
+    promise.catch(error => {
+      next(error)
+    })
+}
 module.exports = {
     fetchItems,
-    findItem
+    findItem,
+    createItem
 };

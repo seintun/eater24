@@ -12,24 +12,25 @@ const findItem = (id) => {
         .select(['items.name','items.price','items.descriptions','items.allergens'])
         .where('id',id);
 }
-// //Insert new item information
-// const createitem = (itemInfo) => {
-//     return knex('items')
-//         .insert({
-//             name:       itemInfo.name,
-//             itemId:     itemInfo.itemId,
-//             password:   itemInfo.password,
-//             email:      itemInfo.email
-//         })
-//         .then(result => {
-//             return `Welcome ${itemInfo.name}! Your itemId '${itemInfo.itemId}' has been created`
-//         })
-//         .catch(err => {
-//             return err.message;
-//         })
-// }
+//Insert new item information
+const createItem = (itemInfo) => {
+    return knex('items')
+        .insert({
+            restaurant_id:  "1",
+            name:          itemInfo.name,
+            price:         itemInfo.price,
+            descriptions:  itemInfo.descriptions,
+            allergens:     itemInfo.allergens
+        })
+        .then(result => {
+            return `Your '${itemInfo.name}' has been created`
+        })
+        .catch(err => {
+            return err.message;
+        })
+}
 module.exports = {
     fetchItems,
-    findItem
-    // createitem
+    findItem,
+    createItem
 }

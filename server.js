@@ -11,9 +11,11 @@ app.use(cors())
 
 const usersRoute = require('./src/routes/users.route');
 const restaurantsRoute = require('./src/routes/restaurants.route');
+const itemsRoute = require('./src/routes/items.route');
 
 app.use('/users', usersRoute);
 app.use('/restaurants', restaurantsRoute);
+app.use('/items', itemsRoute);
 
 app.all('*', (req, res, next) => res.sendStatus(404))
 app.use((err, req, res, next) => {

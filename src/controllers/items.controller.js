@@ -1,20 +1,27 @@
+const model = require('../models/items.model');
+
 const fetchItems = (req, res, next) => {
-    res.send(`GET ALL: You are hitting the collection of Items page!`)
+    let promise = model.fetchItems()
+
+    promise.then(result => {
+      return result.error ? next(result) : res.status(200).json(result)
+    })
+    promise.catch(error => {
+      next(error)
+    })
 }
-// const getItem = (req, res, next) => {
-//     res.send(`GET ONE: You are hitting the Item page!`)
-// }
-// const createItem = (req, res, next) => {
-//     res.send(`POST: You are creating the Item page!`)
-// }
-// const editItem = (req, res, next) => {
-//     res.send(`PUT: You are editing the Item page!`)
-// }
-// const deleteItem = (req, res, next) => {
-//     res.send(`DELETE: You are deleting the Item page!`)
+const findItem = (req, res, next) => {
+    let {id} = req.params;
+    let promise = model.findItem(id)
+
+    promise.then(result => {
+      return result.error ? next(result) : res.status(200).json(result)
+    })
+    promise.catch(error => {
+      next(error)
+    })
 }
-module.exports = {fetchItems};
-// module.exports = {getItem};
-// module.exports = {createItem};
-// module.exports = {editItem};
-// module.exports = {deleteItem};
+module.exports = {
+    fetchItems,
+    findItem
+};

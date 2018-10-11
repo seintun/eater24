@@ -12,7 +12,7 @@ const findItem = (itemId) => {
         .select(['items.name','items.price','items.descriptions','items.allergens'])
         .where('id',itemId);
 }
-//Insert new item information
+//Query items table and assign each column with respective values from args: itemInfo and req.params.restaurantId for assigning its foreign key
 const createItem = (itemInfo, restaurantId) => {
     return knex('items')
         .insert({
@@ -23,6 +23,7 @@ const createItem = (itemInfo, restaurantId) => {
             allergens:     itemInfo.allergens
         })
         .then(result => {
+            //Return successful message once the entry is completed
             return `Your '${itemInfo.name}' has been created inside your restaurant`
         })
         .catch(err => {

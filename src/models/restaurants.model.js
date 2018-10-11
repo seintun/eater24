@@ -18,17 +18,17 @@ const findRestaurant = (id) => {
       : result
   })
 }
-// const createRestaurant = (userInfo) => {
-//   let user = restaurantsQuery.createRestaurant(userInfo)
+const createRestaurant = (restaurantInfo) => {
+  let restaurant = restaurantsQuery.createRestaurant(restaurantInfo)
 
-//   return user.then(result => {
-//     return !result
-//       ? { error: 'error creating new restaurant', status: 404 }
-//       : result
-//   })
-// }
+  return restaurant.then(result => {
+    return !result
+      ? { error: 'error creating new restaurant', status: 404 }
+      : result
+  })
+}
 module.exports = {
   fetchRestaurants,
-  findRestaurant
-//   createRestaurant
+  findRestaurant,
+  createRestaurant
 }

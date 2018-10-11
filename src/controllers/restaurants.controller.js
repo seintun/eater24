@@ -21,9 +21,18 @@ const findRestaurant = (req, res, next) => {
       next(error)
     })
 }
-// const createRestaurant = (req, res, next) => {
-//     res.send(`POST: You are creating the Restaurant page!`)
-// }
+const createRestaurant = (req, res, next) => {
+    let {body} = req;
+    let promise = model.createRestaurant(body)
+  
+    promise.then(result => {
+      return result.error ? next(result) : res.status(200).json(result)
+    })
+    promise.catch(error => {
+      next(error)
+    })
+}
+
 // const editRestaurant = (req, res, next) => {
 //     res.send(`PUT: You are editing the Restaurant page!`)
 // }
@@ -32,9 +41,8 @@ const findRestaurant = (req, res, next) => {
 // }
 module.exports = {
     fetchRestaurants,
-    findRestaurant
+    findRestaurant,
+    createRestaurant
 };
-// module.exports = {getRestaurant};
-// module.exports = {createRestaurant};
 // module.exports = {editRestaurant};
 // module.exports = {deleteRestaurant};

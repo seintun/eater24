@@ -3,7 +3,7 @@ const router = express.Router();
 const ctrl = require('../controllers/restaurants.controller')
 
 router.get('/', ctrl.fetchRestaurants);
-// router.get('/:id', ctrl.getRestaurant);
+router.get('/:id', ctrl.findRestaurant);
 
 // router.post('/', ctrl.createRestaurant);
 // router.put('/:id', ctrl.editRestaurant);

@@ -1,7 +1,7 @@
-const usersQuery = require('../queries/app')
+const usersQuery = require('../queries/users.query')
 
 const fetchUsers = () => {
-  users = usersQuery.fetchUsers()
+  let users = usersQuery.fetchUsers()
 
   return users.then(result => {
     return result.length < 1
@@ -10,7 +10,7 @@ const fetchUsers = () => {
   })
 }
 const findUser = (id) => {
-  user = usersQuery.findUser(id)
+  let user = usersQuery.findUser(id)
 
   return user.then(result => {
     return result.length < 1
@@ -18,7 +18,17 @@ const findUser = (id) => {
       : result
   })
 }
+const createUser = (userInfo) => {
+  let user = usersQuery.createUser(userInfo)
+
+  return user.then(result => {
+    return !result
+      ? { error: 'error creating new user', status: 404 }
+      : result
+  })
+}
 module.exports = {
   fetchUsers,
-  findUser
+  findUser,
+  createUser
 }

@@ -8,10 +8,10 @@ module.exports = {
       database: 'eater24'
     },
     migrations: {
-      directory: './db/migrations'
+      directory: './src/db/migrations'
     },
     seeds: {
-      directory: './db/seeds'
+      directory: './src/db/seeds'
     }
   }
 };

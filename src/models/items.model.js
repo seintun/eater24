@@ -1,7 +1,7 @@
 const itemsQuery = require('../queries/items.query')
 //calling Query to fetch list of items
-const fetchItems = () => {
-  let items = itemsQuery.fetchItems()
+const fetchItems = (restaurantId) => {
+  let items = itemsQuery.fetchItems(restaurantId)
 
   return items.then(result => {
     return result.length < 1
@@ -10,8 +10,8 @@ const fetchItems = () => {
   })
 }
 //calling Query to find specific menu item
-const findItem = (id) => {
-  let item = itemsQuery.findItem(id)
+const findItem = (itemId, restaurantId) => {
+  let item = itemsQuery.findItem(itemId, restaurantId)
 
   return item.then(result => {
     return result.length < 1

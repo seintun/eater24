@@ -22,9 +22,11 @@ const findItem = (req, res, next) => {
     })
 }
 const createItem = (req, res, next) => {
+    
     let {body} = req;
-    let promise = model.createItem(body)
-  
+    let {restaurantId} = req.params;
+    let promise = model.createItem(body, restaurantId)
+
     promise.then(result => {
       return result.error ? next(result) : res.status(200).json(result)
     })

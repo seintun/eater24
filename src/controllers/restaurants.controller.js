@@ -1,5 +1,4 @@
 const model = require('../models/restaurants.model');
-
 const fetchRestaurants = (req, res, next) => {
     let promise = model.fetchRestaurants()
 

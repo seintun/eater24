@@ -18,8 +18,8 @@ const findItem = (id) => {
       : result
   })
 }
-const createItem = (itemInfo) => {
-  let item = itemsQuery.createItem(itemInfo)
+const createItem = (itemInfo, restaurantId) => {
+  let item = itemsQuery.createItem(itemInfo, restaurantId)
 
   return item.then(result => {
     return !result

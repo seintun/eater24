@@ -2,7 +2,9 @@ const model = require('../models/items.model');
 
 //fetching a list of menu items
 const fetchItems = (req, res, next) => {
-    let promise = model.fetchItems()
+    //de-structure req.params for specified restaurantsId
+    let {restaurantId} = req.params;
+    let promise = model.fetchItems(restaurantId)
 
     promise.then(result => {
       return result.error ? next(result) : res.status(200).json(result)
@@ -13,8 +15,11 @@ const fetchItems = (req, res, next) => {
 }
 //finding a specific menu item
 const findItem = (req, res, next) => {
+    //de-structure req.params for specified itemId
     let {id} = req.params;
-    let promise = model.findItem(id)
+    //de-structure req.params for specified restaurantsId
+    let {restaurantId} = req.params;
+    let promise = model.findItem(id, restaurantId)
 
     promise.then(result => {
       return result.error ? next(result) : res.status(200).json(result)

@@ -1,20 +1,29 @@
+const model = require('../models/orders.model');
+
 const fetchOrders = (req, res, next) => {
-    res.send(`GET ALL: You are hitting the collection of Orders page!`)
+    let promise = model.fetchOrders()
+
+    promise.then(result => {
+      return result.error ? next(result) : res.status(200).json(result)
+    })
+    promise.catch(error => {
+      next(error)
+    })
 }
-// const getOrder = (req, res, next) => {
-//     res.send(`GET ONE: You are hitting the Order page!`)
-// }
-// const createOrder = (req, res, next) => {
-//     res.send(`POST: You are creating the Order page!`)
-// }
-// const editOrder = (req, res, next) => {
-//     res.send(`PUT: You are editing the Order page!`)
-// }
-// const deleteOrder = (req, res, next) => {
-//     res.send(`DELETE: You are deleting the Order page!`)
+const findOrder = (req, res, next) => {
+    let {id} = req.params;
+    let promise = model.findOrder(id)
+
+    promise.then(result => {
+      return result.error ? next(result) : res.status(200).json(result)
+    })
+    promise.catch(error => {
+      next(error)
+    })
 }
-module.exports = {fetchOrder};
-// module.exports = {getOrder};
-// module.exports = {createOrder};
-// module.exports = {editOrder};
-// module.exports = {deleteOrder};
+
+
+module.exports = {
+    fetchOrders,
+    findOrder
+};

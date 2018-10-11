@@ -1,16 +1,20 @@
 const knex = require('./db')
 
 //Query returns a list of items details
-const fetchItems = () => {
+const fetchItems = (restaurantId) => {
     return knex('items')
-        .select(['items.name','items.price','items.descriptions','items.allergens'])
-        .orderBy('name', 'ASC');
+        // .select(['items.name','items.price','items.descriptions','items.allergens'])
+        .select('*')
+        .where('restaurant_id', restaurantId)
+        .orderBy('items.name', 'ASC');
 }
 //Query return a specified item with item & details
-const findItem = (itemId) => {
+const findItem = (itemId, restaurantId) => {
     return knex('items')
-        .select(['items.name','items.price','items.descriptions','items.allergens'])
-        .where('id',itemId);
+        // .select(['items.name','items.price','items.descriptions','items.allergens'])
+        .select('*')
+        .where('restaurant_id', restaurantId)
+        .where('id', itemId);
 }
 //Query items table and assign each column with respective values from args: itemInfo and req.params.restaurantId for assigning its foreign key
 const createItem = (itemInfo, restaurantId) => {

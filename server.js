@@ -13,12 +13,16 @@ app.use(cors());
 const usersRoute = require('./src/routes/users.route');
 const restaurantsRoute = require('./src/routes/restaurants.route');
 const itemsRoute = require('./src/routes/items.route');
+const ordersRoute = require('./src/routes/orders.route');
 
 //using appropraite route files when specified route is reached
 app.use('/users', usersRoute);
 app.use('/restaurants', restaurantsRoute);
-//itemsRoute is used when restaurant is reached because each menu item belong to its restaurant
+
+//itemsRoute is used when restaurant is reached because each menu item belongs to its restaurant
 app.use('/restaurants', itemsRoute);
+//ordersRoute is used when restaurant is reached because each order belongs to its restaurant
+app.use('/orders', ordersRoute);
 
 //Error-handling if any other route is reached
 app.all('*', (req, res, next) => res.sendStatus(404))

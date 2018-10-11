@@ -1,9 +1,26 @@
+const model = require('../models/restaurants.model');
+
 const fetchRestaurants = (req, res, next) => {
-    res.send(`GET ALL: You are hitting the collection of Restaurants page!`)
+    let promise = model.fetchRestaurants()
+
+    promise.then(result => {
+      return result.error ? next(result) : res.status(200).json(result)
+    })
+    promise.catch(error => {
+      next(error)
+    })
 }
-// const getRestaurant = (req, res, next) => {
-//     res.send(`GET ONE: You are hitting the Restaurant page!`)
-// }
+const findRestaurant = (req, res, next) => {
+    let {id} = req.params;
+    let promise = model.findRestaurant(id)
+
+    promise.then(result => {
+      return result.error ? next(result) : res.status(200).json(result)
+    })
+    promise.catch(error => {
+      next(error)
+    })
+}
 // const createRestaurant = (req, res, next) => {
 //     res.send(`POST: You are creating the Restaurant page!`)
 // }
@@ -13,7 +30,10 @@ const fetchRestaurants = (req, res, next) => {
 // const deleteRestaurant = (req, res, next) => {
 //     res.send(`DELETE: You are deleting the Restaurant page!`)
 // }
-module.exports = {fetchRestaurants};
+module.exports = {
+    fetchRestaurants,
+    findRestaurant
+};
 // module.exports = {getRestaurant};
 // module.exports = {createRestaurant};
 // module.exports = {editRestaurant};

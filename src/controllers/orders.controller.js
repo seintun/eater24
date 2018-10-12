@@ -27,8 +27,26 @@ const findOrder = (req, res, next) => {
     })
 }
 
+//creating a new order
+const createOrder = (req, res, next) => {
+  //de-structure req and extract body
+  let {body} = req;
+  //de-structure req.params for specified restaurantsId
+  let {restaurantId} = req.params;
+  //pass as arguments for model.createOrder
+  let promise = model.createOrder(body, restaurantId)
+
+  promise.then(result => {
+    return result.error ? next(result) : res.status(200).json(result)
+  })
+  promise.catch(error => {
+    next(error)
+  })
+}
+
 
 module.exports = {
     fetchOrders,
-    findOrder
+    findOrder,
+    createOrder
 };

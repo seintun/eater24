@@ -1,15 +1,17 @@
 const knex = require('./db')
 
 //Query returns a list of orders details
-const fetchOrders = () => {
+const fetchOrders = (restaurantId) => {
     return knex('orders')
-        .orderBy('created_at', 'DESC');
+        .select('*')
+        .where('restaurant_id', restaurantId)
 }
-//Query return a specified User with name & email
-const findOrder = (id) => {
+//Query return a specified order with details
+const findOrder = (orderId, restaurantId) => {
     return knex('orders')
-        .select(['orders.pretax'])
-        .where('id',id);
+        .select('*')
+        .where('restaurant_id', restaurantId)
+        .where('id', orderId);
 }
 
 module.exports = {

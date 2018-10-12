@@ -1,7 +1,7 @@
 const ordersQuery = require('../queries/orders.query')
 
-const fetchOrders = () => {
-  let orders = ordersQuery.fetchOrders()
+const fetchOrders = (restaurantId) => {
+  let orders = ordersQuery.fetchOrders(restaurantId)
 
   return orders.then(result => {
     return result.length < 1
@@ -9,12 +9,12 @@ const fetchOrders = () => {
       : result
   })
 }
-const findOrder = (id) => {
-  let user = ordersQuery.findOrder(id)
+const findOrder = (orderId, restaurantId) => {
+  let order = ordersQuery.findOrder(orderId, restaurantId)
 
-  return user.then(result => {
+  return order.then(result => {
     return result.length < 1
-      ? { error: 'error retrieving orders', status: 404 }
+      ? { error: 'error retrieving order', status: 404 }
       : result
   })
 }

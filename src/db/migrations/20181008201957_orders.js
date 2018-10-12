@@ -11,9 +11,6 @@
           .references('id')
           .inTable('restaurants')
           .onDelete('CASCADE');
-        table.integer('pretax');
-        table.integer('tax');
-        table.integer('tips');
         table.timestamps(true,true);
     });
 };

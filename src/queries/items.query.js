@@ -3,7 +3,6 @@ const knex = require('./db')
 //Query returns a list of items details
 const fetchItems = (restaurantId) => {
     return knex('items')
-        // .select(['items.name','items.price','items.descriptions','items.allergens'])
         .select('*')
         .where('restaurant_id', restaurantId)
         .orderBy('items.name', 'ASC');
@@ -11,7 +10,6 @@ const fetchItems = (restaurantId) => {
 //Query return a specified item with item & details
 const findItem = (itemId, restaurantId) => {
     return knex('items')
-        // .select(['items.name','items.price','items.descriptions','items.allergens'])
         .select('*')
         .where('restaurant_id', restaurantId)
         .where('id', itemId);
@@ -28,7 +26,7 @@ const createItem = (itemInfo, restaurantId) => {
         })
         .then(result => {
             //Return successful message once the entry is completed
-            return `Your '${itemInfo.name}' has been created inside your restaurant`
+            return `Your new menu item '${itemInfo.name}' has been created inside your restaurant's menu`
         })
         .catch(err => {
             return err.message;

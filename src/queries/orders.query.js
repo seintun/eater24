@@ -2,6 +2,7 @@ const knex = require('./db')
 
 //Query returns a list of orders details
 const fetchOrders = (restaurantId) => {
+
     return knex('orders_items')
         .join('orders', 'orders.id', '=', 'orders_items.order_id')
         .join('items', 'items.id', '=', 'orders_items.item_id')

@@ -10,11 +10,11 @@ const fetchOrders = (restaurantId) => {
   })
 }
 const findOrder = (orderId, restaurantId) => {
-  let user = ordersQuery.findOrder(orderId, restaurantId)
+  let order = ordersQuery.findOrder(orderId, restaurantId)
 
-  return user.then(result => {
+  return order.then(result => {
     return result.length < 1
-      ? { error: 'error retrieving orders', status: 404 }
+      ? { error: 'error retrieving order', status: 404 }
       : result
   })
 }

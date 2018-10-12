@@ -19,7 +19,8 @@ const findOrder = (orderId, restaurantId) => {
         .join('restaurants', 'restaurants.id', '=', 'orders.restaurant_id')
         .join('users', 'users.id', '=', 'orders.user_id')
         .select('users.name as userName','orders.id as orderId','restaurants.name as restaurantName','orders.pretax as orderPretax', 'orders.tax as orderTax','orders.tips as orderTips')
-        .where('orders.id', orderId);
+        .where('orders.id', orderId)
+        .where('orders.restaurant_id', restaurantId)
     }
 
 module.exports = {

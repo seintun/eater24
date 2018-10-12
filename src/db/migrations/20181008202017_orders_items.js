@@ -11,7 +11,9 @@ exports.up = function(knex, Promise) {
           .references('id')
           .inTable('items')
           .onDelete('CASCADE');
-          table.timestamps(true,true);
+        table.integer('quantity')
+          .notNullable()
+        table.timestamps(true,true);
     });
 };
 

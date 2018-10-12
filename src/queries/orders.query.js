@@ -9,7 +9,7 @@ const fetchOrders = (restaurantId) => {
         .join('restaurants', 'restaurants.id', '=', 'orders.restaurant_id')
         .join('users', 'users.id', '=', 'orders.user_id')
         // Select certain columns and generate order report
-        .select('users.name as userName','orders.id as orderId','restaurants.name as restaurantName','orders.pretax as orderPretax', 'orders.tax as orderTax','orders.tips as orderTips')
+        .select('users.name as userName','orders.id as orderId','restaurants.name as restaurantName', 'items.name as itemName', 'items.descriptions as itemDescriptions','items.price as itemPrice','orders_items.quantity as itemQuantity')
         .where('orders.restaurant_id', restaurantId)
         // Remove any duplicate data
         .distinct()
@@ -23,7 +23,7 @@ const findOrder = (orderId, restaurantId) => {
         .join('restaurants', 'restaurants.id', '=', 'orders.restaurant_id')
         .join('users', 'users.id', '=', 'orders.user_id')
         // Select certain columns and generate order report
-        .select('users.name as userName','orders.id as orderId','restaurants.name as restaurantName','orders.pretax as orderPretax', 'orders.tax as orderTax','orders.tips as orderTips')
+        .select('users.name as userName','orders.id as orderId','restaurants.name as restaurantName', 'items.name as itemName', 'items.descriptions as itemDescriptions','items.price as itemPrice','orders_items.quantity as itemQuantity')
         .where('orders.id', orderId)
         .where('orders.restaurant_id', restaurantId)
         // Remove any duplicate data
@@ -31,35 +31,40 @@ const findOrder = (orderId, restaurantId) => {
     }
 //Query order table and assign each column with respective values from args: body and req.params.restaurantId for assigning its foreign key
 const createOrder = (body, restaurantId) => {
-    // console.log(body,'this is body inside QUERY')
-    // console.log(restaurantId,'this is resId inside QUERY')
+    //Insert new row of order details with FKs user_id and restaurant_id
     return knex('orders')
         .insert({
             user_id:        body.user_Id,
-            restaurant_id:  restaurantId,
-            pretax:         "50",
-            tax:            "24",
-            tips:           "12"
+            restaurant_id:  restaurantId
         })
+        // Return the primary key of the last entry
         .returning('id')
 
         .then(result => {
-            let arrayOfObj = [];
-            //Return successful message once the entry is completed
-            body.items_id.map(item => {
+            // Create an empty object
+            let arrayOfitemObj = [];
+            // Iterates through the value of incoming req.body object's array
+            Object.values(body.items).map(el => {
+                // push each result into the template object
                 let itemOrdered = {
-                                order_id:   `${result}`,
-                                item_id:    item
-                            }
-                    arrayOfObj.push(itemOrdered);
+                        //assign FK with the newly id from orders table
+                        order_id:  `${result}`,
+                        //assign value from the first index (itemId) of item's array
+                        item_id:   el[0],
+                        //assign value from the first index (quantity) of item's array
+                        quantity:  el[1]
+                    }
+                    //push each object into the arrayOfitemObj
+                    arrayOfitemObj.push(itemOrdered);
                 })
-            return knex('orders_items')
-                .insert(arrayOfObj);
-        })
-        .catch(err => {
-            return err.message;
-        })
-}
+                return knex('orders_items')
+                    //Insert all the item objects into orders_items table
+                    .insert(arrayOfitemObj);
+            })
+            .catch(err => {
+                return err.message;
+            })
+    }
 module.exports = {
     fetchOrders,
     findOrder,

@@ -1,7 +1,7 @@
 const ordersQuery = require('../queries/orders.query')
 
-const fetchOrders = () => {
-  let orders = ordersQuery.fetchOrders()
+const fetchOrders = (restaurantId) => {
+  let orders = ordersQuery.fetchOrders(restaurantId)
 
   return orders.then(result => {
     return result.length < 1
@@ -9,8 +9,8 @@ const fetchOrders = () => {
       : result
   })
 }
-const findOrder = (id) => {
-  let user = ordersQuery.findOrder(id)
+const findOrder = (orderId, restaurantId) => {
+  let user = ordersQuery.findOrder(orderId, restaurantId)
 
   return user.then(result => {
     return result.length < 1

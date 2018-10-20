@@ -3,13 +3,13 @@ const knex = require('./db')
 //Query returns a list of restaurants details
 const fetchRestaurants = () => {
     return knex('restaurants')
-        .select(['restaurants.name','restaurants.address','restaurants.cuisine','restaurants.phone'])
+        .select(['restaurants.id','restaurants.name','restaurants.address','restaurants.cuisine','restaurants.phone'])
         .orderBy('name', 'ASC');
 }
 //Query return a specified restaurant with restaurant & email
 const findRestaurant = (id) => {
     return knex('restaurants')
-        .select(['restaurants.name','restaurants.address','restaurants.cuisine','restaurants.phone'])
+        .select(['restaurants.id','restaurants.name','restaurants.address','restaurants.cuisine','restaurants.phone'])
         .where('id',id);
 }
 //Insert new restaurant information

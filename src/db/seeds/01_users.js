@@ -8,25 +8,19 @@ exports.seed = function(knex, Promise) {
           name: 'Sein', 
           userId: 'sein', 
           password: 'sein123', 
-          email: 'sein@galvanize.com',
-          created_at: new Date(),
-          updated_at: new Date()
+          email: 'sein@galvanize.com'
         },
         {
           name: 'Mansoor', 
           userId: 'mansoor', 
           password: 'mansoor123', 
-          email: 'mansoor@galvanize.com',
-          created_at: new Date(),
-          updated_at: new Date()
+          email: 'mansoor@galvanize.com'
         },
         {
           name: 'John', 
           userId: 'john', 
           password: 'john123', 
-          email: 'john@galvanize.com',
-          created_at: new Date(),
-          updated_at: new Date()
+          email: 'john@galvanize.com'
         }
       ]);
     });

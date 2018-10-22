@@ -28,8 +28,15 @@ const createUser = (userInfo) => {
             return err.message;
         })
 }
+const loginUser = (userInfo) => {
+    return knex('users')
+        .select(['users.id','users.name','users.email'])
+        .where('users.userId',userInfo.userName)
+        .where('users.password',userInfo.password);
+}
 module.exports = {
     fetchUsers,
     findUser,
-    createUser
+    createUser,
+    loginUser
 }

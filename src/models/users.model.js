@@ -27,8 +27,18 @@ const createUser = (userInfo) => {
       : result
   })
 }
+const loginUser = (userInfo) => {
+  let user = usersQuery.loginUser(userInfo)
+
+  return user.then(result => {
+    return !result
+      ? { error: 'error finding user', status: 404 }
+      : result
+  })
+}
 module.exports = {
   fetchUsers,
   findUser,
-  createUser
+  createUser,
+  loginUser
 }

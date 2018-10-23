@@ -28,7 +28,7 @@ const findOrder = (orderId, restaurantId) => {
         .where('orders.restaurant_id', restaurantId)
         // Remove any duplicate data
         .distinct()
-    }
+}
 //Query order table and assign each column with respective values from args: body and req.params.restaurantId for assigning its foreign key
 const createOrder = (body, restaurantId) => {
     //Insert new row of order details with FKs user_id and restaurant_id
@@ -64,9 +64,18 @@ const createOrder = (body, restaurantId) => {
             .catch(err => {
                 return err.message;
             })
-    }
+}
+//Query delete a specified order with details
+const deleteOrder = (orderId, restaurantId) => {
+    // return innerJoin results from orders, items, restaurants, users tables
+    return knex('orders')
+        .where('orders.id', orderId)
+        .where('orders.restaurant_id', restaurantId)
+        .del();
+}
 module.exports = {
     fetchOrders,
     findOrder,
-    createOrder
+    createOrder,
+    deleteOrder
 }

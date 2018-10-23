@@ -14,6 +14,21 @@ const fetchOrders = (restaurantId) => {
         // Remove any duplicate data
         .distinct()
 }
+//Query returns a list of user's past orders
+const fetchUserOrders = (userInfo) => {
+    console.log(userInfo)
+    // return innerJoin results from orders, items, restaurants, users tables
+    return knex('orders_items')
+        .join('orders', 'orders.id', '=', 'orders_items.order_id')
+        .join('items', 'items.id', '=', 'orders_items.item_id')
+        .join('restaurants', 'restaurants.id', '=', 'orders.restaurant_id')
+        .join('users', 'users.id', '=', 'orders.user_id')
+        // Select certain columns and generate order report
+        .select('orders.id as orderId','restaurants.name as restaurantName', 'items.name as itemName', 'items.descriptions as itemDescriptions','items.price as itemPrice','orders_items.quantity as itemQuantity')
+        .where('users.id', userInfo.id)
+        // Remove any duplicate data
+        .distinct();
+}
 //Query return a specified order with details
 const findOrder = (orderId, restaurantId) => {
     // return innerJoin results from orders, items, restaurants, users tables
@@ -94,5 +109,6 @@ module.exports = {
     findOrder,
     createOrder,
     editOrder,
-    deleteOrder
+    deleteOrder,
+    fetchUserOrders
 }

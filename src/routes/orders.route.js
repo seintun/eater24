@@ -11,6 +11,8 @@ router.get('/:restaurantId/orders/:id', ctrl.findOrder);
 
 //requesting to create new order with provided array of items from the front end 
 router.post('/:restaurantId/orders', ctrl.createOrder);
+
+router.post('/', ctrl.fetchUserOrders);
 router.put('/:id', ctrl.editOrder);
 router.delete('/:id', ctrl.deleteOrder);
 

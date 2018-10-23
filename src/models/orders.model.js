@@ -9,6 +9,15 @@ const fetchOrders = (restaurantId) => {
       : result
   })
 }
+//calling Query to fetch list of orders belong to a specific user
+const fetchUserOrders = (userInfo) => {
+  let orders = ordersQuery.fetchUserOrders(userInfo)
+  return orders.then(result => {
+    return result.length < 1
+      ? { error: 'error retrieving user previous orders', status: 404 }
+      : result
+  })
+}
 //calling Query to find specific order of specified restaurant
 const findOrder = (orderId, restaurantId) => {
   let order = ordersQuery.findOrder(orderId, restaurantId)
@@ -54,5 +63,6 @@ module.exports = {
   findOrder,
   createOrder,
   editOrder,
-  deleteOrder
+  deleteOrder,
+  fetchUserOrders
 }

@@ -2,8 +2,8 @@ const model = require('../models/orders.model');
 
 const fetchOrders = (req, res, next) => {
     //de-structure req.params for specified restaurantsId
-    let {restaurantId} = req.params;
-    let promise = model.fetchOrders(restaurantId)
+    let {body} = req;
+    let promise = model.fetchOrders(body)
 
     promise.then(result => {
       return result.error ? next(result) : res.status(200).json(result)
@@ -11,6 +11,19 @@ const fetchOrders = (req, res, next) => {
     promise.catch(error => {
       next(error)
     })
+}
+// Fetch specific user's orders
+const fetchUserOrders = (req, res, next) => {
+  //de-structure req.params for specified restaurantsId
+  let {body} = req;
+  let promise = model.fetchUserOrders(body)
+
+  promise.then(result => {
+    return result.error ? next(result) : res.status(200).json(result)
+  })
+  promise.catch(error => {
+    next(error)
+  })
 }
 const findOrder = (req, res, next) => {
     //de-structure req.params for specified itemId
@@ -75,5 +88,6 @@ module.exports = {
     findOrder,
     createOrder,
     editOrder,
-    deleteOrder
+    deleteOrder,
+    fetchUserOrders
 };

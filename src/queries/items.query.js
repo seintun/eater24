@@ -32,8 +32,17 @@ const createItem = (itemInfo, restaurantId) => {
             return err.message;
         })
 }
+//Query delete a specified item with item & details
+const deleteItem = (itemId, restaurantId) => {
+    console.log(restaurantId)
+    return knex('items')
+        .where('restaurant_id', restaurantId)
+        .where('id', itemId)
+        .del();
+}
 module.exports = {
     fetchItems,
     findItem,
-    createItem
+    createItem,
+    deleteItem
 }

@@ -29,8 +29,19 @@ const createItem = (itemInfo, restaurantId) => {
       : result
   })
 }
+//calling Query to delete specific menu item
+const deleteItem = (itemId, restaurantId) => {
+  let item = itemsQuery.deleteItem(itemId, restaurantId)
+
+  return item.then(result => {
+    return result.length < 1
+      ? { error: 'error retrieving item', status: 404 }
+      : result
+  })
+}
 module.exports = {
   fetchItems,
   findItem,
-  createItem
+  createItem,
+  deleteItem
 }

@@ -30,8 +30,8 @@ const createOrder = (body, restaurantId) => {
   })
 }
 //calling Query to delete specific order of specified restaurant
-const deleteOrder = (orderId, restaurantId) => {
-  let order = ordersQuery.deleteOrder(orderId, restaurantId)
+const deleteOrder = (orderId) => {
+  let order = ordersQuery.deleteOrder(orderId)
 
   return order.then(result => {
     return result.length < 1

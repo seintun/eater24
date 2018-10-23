@@ -66,11 +66,10 @@ const createOrder = (body, restaurantId) => {
             })
 }
 //Query delete a specified order with details
-const deleteOrder = (orderId, restaurantId) => {
+const deleteOrder = (orderId) => {
     // return innerJoin results from orders, items, restaurants, users tables
     return knex('orders')
         .where('orders.id', orderId)
-        .where('orders.restaurant_id', restaurantId)
         .del();
 }
 module.exports = {

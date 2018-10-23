@@ -36,6 +36,15 @@ const loginUser = (userInfo) => {
       : result
   })
 }
+const editUser = (userId, userInfo) => {
+  let user = usersQuery.editUser(userId, userInfo)
+
+  return user.then(result => {
+    return result.length < 1
+      ? { error: 'error retrieving users', status: 404 }
+      : result
+  })
+}
 
 const deleteUser = (id) => {
   let user = usersQuery.deleteUser(id)
@@ -51,5 +60,6 @@ module.exports = {
   findUser,
   createUser,
   loginUser,
+  editUser,
   deleteUser
 }

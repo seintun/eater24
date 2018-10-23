@@ -34,9 +34,16 @@ const loginUser = (userInfo) => {
         .where('users.userId',userInfo.userName)
         .where('users.password',userInfo.password);
 }
+//Query delete a specified User from database
+const deleteUser = (id) => {
+    return knex('users')
+        .where('id',id)
+        .del();
+}
 module.exports = {
     fetchUsers,
     findUser,
     createUser,
-    loginUser
+    loginUser,
+    deleteUser
 }

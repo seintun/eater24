@@ -44,6 +44,18 @@ const loginUser = (req, res, next) => {
     next(error)
   })
 }
+
+const deleteUser = (req, res, next) => {
+  let {id} = req.params;
+  let promise = model.deleteUser(id)
+
+  promise.then(result => {
+    return result.error ? next(result) : res.status(200).json(result)
+  })
+  promise.catch(error => {
+    next(error)
+  })
+}
 // const editUser = (req, res, next) => {
 //     res.send(`PUT: You are editing the User page!`)
 // }
@@ -54,7 +66,7 @@ module.exports = {
     fetchUsers,
     findUser,
     createUser,
-    loginUser
+    loginUser,
+    deleteUser
     // editUser,
-    // deleteUser
 };

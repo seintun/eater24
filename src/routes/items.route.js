@@ -11,7 +11,7 @@ router.get('/:restaurantId/items/:id', ctrl.findItem);
 
 //requesting to create new menu item 
 router.post('/:restaurantId/items', ctrl.createItem);
-// router.put('/:id', ctrl.editItem);
+router.put('/:restaurantId/items/:id', ctrl.editItem);
 router.delete('/:restaurantId/items/:id', ctrl.deleteItem);
 
 module.exports = router;

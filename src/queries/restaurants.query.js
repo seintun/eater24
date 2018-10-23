@@ -28,6 +28,24 @@ const createRestaurant = (restaurantInfo) => {
             return err.message;
         })
 }
+//Update existing restaurant information
+const editRestaurant = (restaurantId, restaurantInfo) => {
+    return knex('restaurants')
+        .where('id', restaurantId)
+        .update({
+            id:         restaurantId,
+            name:       restaurantInfo.name,
+            address:    restaurantInfo.address,
+            cuisine:    restaurantInfo.cuisine,
+            phone:      restaurantInfo.phone
+        })
+        .then(result => {
+            return `Welcome! Your restaurant '${restaurantInfo.name}' has been updated`
+        })
+        .catch(err => {
+            return err.message;
+        })
+}
 const deleteRestaurant = (id) => {
     return knex('restaurants')
         .where('id',id)
@@ -37,5 +55,6 @@ module.exports = {
     fetchRestaurants,
     findRestaurant,
     createRestaurant,
+    editRestaurant,
     deleteRestaurant
 }

@@ -34,6 +34,24 @@ const loginUser = (userInfo) => {
         .where('users.userId',userInfo.userName)
         .where('users.password',userInfo.password);
 }
+//Update existing User information
+const editUser = (userId, userInfo) => {
+    return knex('users')
+        .where('id', userId)
+        .update({
+            id:         userId,
+            name:       userInfo.name,
+            userId:     userInfo.userId,
+            password:   userInfo.password,
+            email:      userInfo.email
+        })
+        .then(result => {
+            return `Welcome ${userInfo.name}! Your userId '${userInfo.userId}' has been updated!`
+        })
+        .catch(err => {
+            return err.message;
+        })
+}
 //Query delete a specified User from database
 const deleteUser = (id) => {
     return knex('users')
@@ -45,5 +63,6 @@ module.exports = {
     findUser,
     createUser,
     loginUser,
+    editUser,
     deleteUser
 }

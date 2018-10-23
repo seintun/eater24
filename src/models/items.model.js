@@ -29,6 +29,16 @@ const createItem = (itemInfo, restaurantId) => {
       : result
   })
 }
+//calling Query to update specific menu item
+const editItem = (itemId, restaurantId, itemInfo) => {
+  let item = itemsQuery.editItem(itemId, restaurantId, itemInfo)
+
+  return item.then(result => {
+    return result.length < 1
+      ? { error: 'error editing item', status: 404 }
+      : result
+  })
+}
 //calling Query to delete specific menu item
 const deleteItem = (itemId, restaurantId) => {
   let item = itemsQuery.deleteItem(itemId, restaurantId)
@@ -43,5 +53,6 @@ module.exports = {
   fetchItems,
   findItem,
   createItem,
+  editItem,
   deleteItem
 }

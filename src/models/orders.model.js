@@ -29,9 +29,19 @@ const createOrder = (body, restaurantId) => {
       : result
   })
 }
+//calling Query to edit specific order
+const editOrder = (orderId, orderInfo) => {
+  let order = ordersQuery.editOrder(orderId, orderInfo)
+
+  return order.then(result => {
+    return result.length < 1
+      ? { error: 'error retrieving order', status: 404 }
+      : result
+  })
+}
 //calling Query to delete specific order of specified restaurant
-const deleteOrder = (orderId, restaurantId) => {
-  let order = ordersQuery.deleteOrder(orderId, restaurantId)
+const deleteOrder = (orderId) => {
+  let order = ordersQuery.deleteOrder(orderId)
 
   return order.then(result => {
     return result.length < 1
@@ -43,5 +53,6 @@ module.exports = {
   fetchOrders,
   findOrder,
   createOrder,
+  editOrder,
   deleteOrder
 }

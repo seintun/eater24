@@ -36,9 +36,20 @@ const loginUser = (userInfo) => {
       : result
   })
 }
+
+const deleteUser = (id) => {
+  let user = usersQuery.deleteUser(id)
+
+  return user.then(result => {
+    return result.length < 1
+      ? { error: 'error deleting users', status: 404 }
+      : result
+  })
+}
 module.exports = {
   fetchUsers,
   findUser,
   createUser,
-  loginUser
+  loginUser,
+  deleteUser
 }

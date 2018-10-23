@@ -7,6 +7,6 @@ router.get('/:id', ctrl.findRestaurant);
 
 router.post('/', ctrl.createRestaurant);
 // router.put('/:id', ctrl.editRestaurant)
-// router.delete('/:id', ctrl.deleteRestaurant);
+router.delete('/:id', ctrl.deleteRestaurant);
 
 module.exports = router;

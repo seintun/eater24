@@ -29,8 +29,19 @@ const createOrder = (body, restaurantId) => {
       : result
   })
 }
+//calling Query to delete specific order of specified restaurant
+const deleteOrder = (orderId, restaurantId) => {
+  let order = ordersQuery.deleteOrder(orderId, restaurantId)
+
+  return order.then(result => {
+    return result.length < 1
+      ? { error: 'error retrieving order', status: 404 }
+      : result
+  })
+}
 module.exports = {
   fetchOrders,
   findOrder,
-  createOrder
+  createOrder,
+  deleteOrder
 }

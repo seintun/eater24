@@ -28,8 +28,14 @@ const createRestaurant = (restaurantInfo) => {
             return err.message;
         })
 }
+const deleteRestaurant = (id) => {
+    return knex('restaurants')
+        .where('id',id)
+        .del();
+}
 module.exports = {
     fetchRestaurants,
     findRestaurant,
-    createRestaurant
+    createRestaurant,
+    deleteRestaurant
 }

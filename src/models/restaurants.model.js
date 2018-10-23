@@ -27,8 +27,18 @@ const createRestaurant = (restaurantInfo) => {
       : result
   })
 }
+const deleteRestaurant = (id) => {
+  let restaurant = restaurantsQuery.deleteRestaurant(id)
+
+  return restaurant.then(result => {
+    return result.length < 1
+      ? { error: 'error retrieving restaurants', status: 404 }
+      : result
+  })
+}
 module.exports = {
   fetchRestaurants,
   findRestaurant,
-  createRestaurant
+  createRestaurant,
+  deleteRestaurant
 }

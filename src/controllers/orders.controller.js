@@ -43,10 +43,25 @@ const createOrder = (req, res, next) => {
     next(error)
   })
 }
+const deleteOrder = (req, res, next) => {
+  //de-structure req.params for specified itemId
+  let {id} = req.params;
+  //de-structure req.params for specified restaurantsId
+  let {restaurantId} = req.params;
+  let promise = model.deleteOrder(id, restaurantId)
+
+  promise.then(result => {
+    return result.error ? next(result) : res.status(200).json(result)
+  })
+  promise.catch(error => {
+    next(error)
+  })
+}
 
 
 module.exports = {
     fetchOrders,
     findOrder,
-    createOrder
+    createOrder,
+    deleteOrder
 };

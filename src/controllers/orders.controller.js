@@ -43,6 +43,19 @@ const createOrder = (req, res, next) => {
     next(error)
   })
 }
+const editOrder = (req, res, next) => {
+  //de-structure req.params for specified itemId
+  let {id} = req.params;
+  let {body} = req;
+  let promise = model.editOrder(id, body)
+
+  promise.then(result => {
+    return result.error ? next(result) : res.status(200).json(result)
+  })
+  promise.catch(error => {
+    next(error)
+  })
+}
 const deleteOrder = (req, res, next) => {
   //de-structure req.params for specified itemId
   let {id} = req.params;
@@ -61,5 +74,6 @@ module.exports = {
     fetchOrders,
     findOrder,
     createOrder,
+    editOrder,
     deleteOrder
 };

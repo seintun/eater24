@@ -65,6 +65,23 @@ const createOrder = (body, restaurantId) => {
                 return err.message;
             })
 }
+//Query edit a specified order with details
+const editOrder = (orderId, orderInfo) => {
+    return knex('orders_items')
+        .where('orders_items.order_id', orderId)
+        .update({
+            order_id:      orderId,
+            item_id:       orderInfo.itemId,
+            quantity:      orderInfo.quantity
+        })
+        .then(result => {
+            //Return successful message once the entry is completed
+            return `Your order has been updated`
+        })
+        .catch(err => {
+            return err.message;
+        })
+}
 //Query delete a specified order with details
 const deleteOrder = (orderId) => {
     // return innerJoin results from orders, items, restaurants, users tables
@@ -76,5 +93,6 @@ module.exports = {
     fetchOrders,
     findOrder,
     createOrder,
+    editOrder,
     deleteOrder
 }

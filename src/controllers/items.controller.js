@@ -44,7 +44,23 @@ const createItem = (req, res, next) => {
       next(error)
     })
 }
+//Updating a specific menu item
+const editItem = (req, res, next) => {
+  //de-structure req.params for specified itemId
+  let {id} = req.params;
+  //de-structure req.params for specified restaurantsId
+  let {restaurantId} = req.params;
+  //de-structure req for updated menuInfo
+  let {body} = req
+  let promise = model.editItem(id, restaurantId, body)
 
+  promise.then(result => {
+    return result.error ? next(result) : res.status(200).json(result)
+  })
+  promise.catch(error => {
+    next(error)
+  })
+}
 //Deleting a specific menu item
 const deleteItem = (req, res, next) => {
   //de-structure req.params for specified itemId
@@ -64,5 +80,6 @@ module.exports = {
     fetchItems,
     findItem,
     createItem,
+    editItem,
     deleteItem
 };

@@ -32,6 +32,27 @@ const createItem = (itemInfo, restaurantId) => {
             return err.message;
         })
 }
+//Query to update restaurant's specific menu item
+const editItem = (itemId, restaurantId, itemInfo) => {
+    console.log(itemId, restaurantId, itemInfo)
+    return knex('items')
+        .where('id', itemId)
+        .update({
+            id:            itemId,
+            restaurant_id: restaurantId,
+            name:          itemInfo.name,
+            price:         itemInfo.price,
+            descriptions:  itemInfo.descriptions,
+            allergens:     itemInfo.allergens
+        })
+        .then(result => {
+            //Return successful message once the entry is completed
+            return `Your new menu item '${itemInfo.name}' has been updated inside your restaurant's menu`
+        })
+        .catch(err => {
+            return err.message;
+        })
+}
 //Query delete a specified item with item & details
 const deleteItem = (itemId, restaurantId) => {
     console.log(restaurantId)
@@ -44,5 +65,6 @@ module.exports = {
     fetchItems,
     findItem,
     createItem,
+    editItem,
     deleteItem
 }

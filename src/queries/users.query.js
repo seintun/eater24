@@ -30,7 +30,7 @@ const createUser = (userInfo) => {
 }
 const loginUser = (userInfo) => {
     return knex('users')
-        .select(['users.id','users.name','users.email'])
+        .select(['users.id','users.userId','users.name','users.email'])
         .where('users.userId',userInfo.userName)
         .where('users.password',userInfo.password);
 }

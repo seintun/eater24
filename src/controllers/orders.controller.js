@@ -2,8 +2,8 @@ const model = require('../models/orders.model');
 
 const fetchOrders = (req, res, next) => {
     //de-structure req.params for specified restaurantsId
-    let {body} = req;
-    let promise = model.fetchOrders(body)
+    let {restaurantId} = req.params;
+    let promise = model.fetchOrders(restaurantId)
 
     promise.then(result => {
       return result.error ? next(result) : res.status(200).json(result)

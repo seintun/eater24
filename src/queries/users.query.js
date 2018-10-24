@@ -35,11 +35,11 @@ const loginUser = (userInfo) => {
         .where('users.password',userInfo.password);
 }
 //Update existing User information
-const editUser = (userId, userInfo) => {
+const editUser = (userInfo) => {
     return knex('users')
-        .where('id', userId)
+        .where('id', userInfo.id)
         .update({
-            id:         userId,
+            id:         userInfo.id,
             name:       userInfo.name,
             userId:     userInfo.userId,
             password:   userInfo.password,

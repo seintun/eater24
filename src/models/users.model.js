@@ -36,8 +36,8 @@ const loginUser = (userInfo) => {
       : result
   })
 }
-const editUser = (userId, userInfo) => {
-  let user = usersQuery.editUser(userId, userInfo)
+const editUser = (userInfo) => {
+  let user = usersQuery.editUser(userInfo)
 
   return user.then(result => {
     return result.length < 1

@@ -46,9 +46,8 @@ const loginUser = (req, res, next) => {
 }
 
 const editUser = (req, res, next) => {
-  let {id} = req.params;
   let {body} = req;
-  let promise = model.editUser(id, body)
+  let promise = model.editUser(body)
 
   promise.then(result => {
     return result.error ? next(result) : res.status(200).json(result)

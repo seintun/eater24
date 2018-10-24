@@ -3,13 +3,13 @@ const knex = require('./db')
 //Query returns a list of Users details
 const fetchUsers = () => {
     return knex('users')
-        .select(['users.id','users.name','users.email'])
+        .select(['users.id','users.userId','users.name','users.email'])
         .orderBy('users.name', 'ASC');
 }
 //Query return a specified User with name & email
 const findUser = (id) => {
     return knex('users')
-        .select(['users.id','users.name','users.email'])
+        .select(['users.id','users.userId','users.name','users.email'])
         .where('id',id);
 }
 //Insert new User information

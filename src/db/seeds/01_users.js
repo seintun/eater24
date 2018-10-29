@@ -7,20 +7,32 @@ exports.seed = function(knex, Promise) {
         { 
           name: 'Sein', 
           userId: 'sein', 
-          password: 'sein123', 
+          password: 'galvanize123', 
           email: 'sein@galvanize.com'
         },
         {
           name: 'Mansoor', 
           userId: 'mansoor', 
-          password: 'mansoor123', 
+          password: 'galvanize123', 
           email: 'mansoor@galvanize.com'
         },
         {
           name: 'John', 
           userId: 'john', 
-          password: 'john123', 
+          password: 'galvanize123', 
           email: 'john@galvanize.com'
+        },
+        {
+          name: 'Mary', 
+          userId: 'mary', 
+          password: 'galvanize123', 
+          email: 'mary@galvanize.com'
+        },
+        {
+          name: 'Isabella', 
+          userId: 'isabella', 
+          password: 'galvanize123', 
+          email: 'isabella@galvanize.com'
         }
       ]);
     });

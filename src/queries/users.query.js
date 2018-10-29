@@ -32,7 +32,13 @@ const loginUser = (userInfo) => {
     return knex('users')
         .select(['users.id','users.userId','users.name','users.email'])
         .where('users.userId',userInfo.userName)
-        .where('users.password',userInfo.password);
+        .where('users.password',userInfo.password)
+        .then(result => {
+            return `Your userId '${userInfo.userName}' has been retrieved!`
+        })
+        .catch(err => {
+            return err.message;
+        })
 }
 //Update existing User information
 const editUser = (userInfo) => {
@@ -43,7 +49,8 @@ const editUser = (userInfo) => {
             name:       userInfo.name,
             userId:     userInfo.userId,
             password:   userInfo.password,
-            email:      userInfo.email
+            email:      userInfo.email,
+            name:       userInfo.name
         })
         .then(result => {
             return `Welcome ${userInfo.name}! Your userId '${userInfo.userId}' has been updated!`

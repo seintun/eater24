@@ -34,7 +34,7 @@ const loginUser = (userInfo) => {
         .where('users.userId',userInfo.userName)
         .where('users.password',userInfo.password)
         .then(result => {
-            return `Your userId '${userInfo.userName}' has been retrieved!`
+            return result;
         })
         .catch(err => {
             return err.message;

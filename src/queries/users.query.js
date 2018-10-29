@@ -22,7 +22,7 @@ const createUser = (userInfo) => {
             email:      userInfo.email
         })
         .then(result => {
-            return `Welcome ${userInfo.name}! Your userId '${userInfo.userId}' has been created`
+            return result;
         })
         .catch(err => {
             return err.message;
@@ -49,8 +49,7 @@ const editUser = (userInfo) => {
             name:       userInfo.name,
             userId:     userInfo.userId,
             password:   userInfo.password,
-            email:      userInfo.email,
-            name:       userInfo.name
+            email:      userInfo.email
         })
         .then(result => {
             return `Welcome ${userInfo.name}! Your userId '${userInfo.userId}' has been updated!`

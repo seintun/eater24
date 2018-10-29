@@ -1,6 +1,8 @@
 # Eater24 (Why wait? Order ahead!)
 Visit: http://eater24-proj02.surge.sh
 [Surge], [Github], [Heroku], [Trello]
+Frontend: https://github.com/seintun/eater24demo
+Backend: https://github.com/seintun/eater24
 
 Eater24 is a deployed mobile-ready Sein-Awesome powered fine-dining concierge service for 
 - diners 
@@ -71,4 +73,3 @@ $ node server.js
 [Surge]: <http://eater24-proj02.surge.sh/>
 [Heroku]: <http://eater24.herokuapp.com>
 [Imgur]: <https://imgur.com/a/ReFqyEx>
-

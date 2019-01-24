@@ -55,9 +55,12 @@ const editUser = (userInfo) => {
 }
 //Query delete a specified User from database
 const deleteUser = (id) => {
-    return knex('users')
-        .where('id',id)
-        .del();
+  return knex('users')
+    .where('id',id)
+    .del()
+    .then(result => {
+      return result
+    })    
 }
 module.exports = {
     fetchUsers,

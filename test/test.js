@@ -24,6 +24,7 @@ describe('TDD for eater24-BackEnd', () => {
   describe('#fetchUsers()', () => {
     it('should check if the default total of seeded users are 5', async () => {
       const result = await users.fetchUsers()
+      expect(result).to.be.an('array')
       expect(result.length).to.equal(5)
     })
     it('should contain id, userId, name, email', async () => {
@@ -41,9 +42,17 @@ describe('TDD for eater24-BackEnd', () => {
     })
   });
   describe('#findUser()', () => {
-    it('should check if input of id of 1 exists for Sein', async () => {
-      const result = await users.findUser(1)
-      expect(result[0].name).to.equal('Sein')
+    let result
+    let user
+    before( async() => {
+      result = await users.findUser(1)
+      user = result[0]
+    })
+    it('should only return 1 user', () => {
+      expect(result.length).to.equal(1)
+    })
+    it('should check if the result is for Sein', () => {
+      expect(user.name).to.equal('Sein')
     })
   });
   describe('#createUser()', () => {
@@ -60,11 +69,12 @@ describe('TDD for eater24-BackEnd', () => {
           newUser = result[0]
         })
     })
-    it('should check if new req.body is inserted into the database by validating keys of id, userId, name, email', async () => {
+    it('should check if new req.body is inserted into the database by validating keys of automatically assigned id, userId, name, password, email', async () => {
       expect(newUser).to.contain.keys(
         'id',
         'userId',
         'name',
+        'password',
         'email'
       )
     })

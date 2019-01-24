@@ -23,5 +23,18 @@ module.exports = {
     seeds: {
       directory: './src/db/seeds'
     }
+  },
+  test: {
+    client: 'pg',
+    connection: {
+      host: 'localhost',
+      database: 'eater24_test'
+    },
+    migrations: {
+      directory: './src/db/migrations'
+    },
+    seeds: {
+      directory: './src/db/seeds'
+    }
   }
 };

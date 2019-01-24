@@ -21,17 +21,12 @@ const createUser = (userInfo) => {
             password:   userInfo.password,
             email:      userInfo.email
         })
-        .then(result => {
-            return result;
-        })
-        .catch(err => {
-            return err.message;
-        })
+        .returning('*')
 }
 const loginUser = (userInfo) => {
     return knex('users')
         .select(['users.id','users.userId','users.name','users.email'])
-        .where('users.userId',userInfo.userName)
+        .where('users.userId',userInfo.userId)
         .where('users.password',userInfo.password)
         .then(result => {
             return result;
@@ -60,9 +55,12 @@ const editUser = (userInfo) => {
 }
 //Query delete a specified User from database
 const deleteUser = (id) => {
-    return knex('users')
-        .where('id',id)
-        .del();
+  return knex('users')
+    .where('id',id)
+    .del()
+    .then(result => {
+      return result
+    })    
 }
 module.exports = {
     fetchUsers,

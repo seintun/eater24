@@ -62,7 +62,9 @@ const deleteUser = (req, res, next) => {
   let promise = model.deleteUser(id)
 
   promise.then(result => {
-    return result.error ? next(result) : res.status(200).json(result)
+    return result.error 
+      ? next(result) 
+      : res.status(200).json(result)
   })
   promise.catch(error => {
     next(error)

@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/seintun/eater24#readme",
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.19.0",
     "chai": "^4.2.0",
     "cors": "^2.8.4",
     "express": "^4.16.3",
